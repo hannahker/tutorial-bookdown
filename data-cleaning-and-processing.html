@@ -24,7 +24,7 @@
 <meta name="author" content="Hannah Ker" />
 
 
-<meta name="date" content="2020-01-12" />
+<meta name="date" content="2020-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -128,14 +128,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Detailed Methodology</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and Description of Data</a></li>
 <li class="chapter" data-level="2" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html"><i class="fa fa-check"></i><b>2</b> Data Cleaning and Processing</a><ul>
-<li class="chapter" data-level="2.1" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html#heart-rate-data"><i class="fa fa-check"></i><b>2.1</b> Heart Rate Data</a></li>
+<li class="chapter" data-level="2.1" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html#heart-rate-data"><i class="fa fa-check"></i><b>2.1</b> Heart rate data</a></li>
 <li class="chapter" data-level="2.2" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html#creating-a-continuous-heart-rate-layer"><i class="fa fa-check"></i><b>2.2</b> Creating a continuous heart rate layer</a></li>
-<li class="chapter" data-level="2.3" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html#personal-comments"><i class="fa fa-check"></i><b>2.3</b> Personal Comments</a></li>
+<li class="chapter" data-level="2.3" data-path="data-cleaning-and-processing.html"><a href="data-cleaning-and-processing.html#personal-comments"><i class="fa fa-check"></i><b>2.3</b> Personal comments</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="coding-of-personal-comments.html"><a href="coding-of-personal-comments.html"><i class="fa fa-check"></i><b>3</b> Coding of Personal Comments</a><ul>
 <li class="chapter" data-level="3.1" data-path="coding-of-personal-comments.html"><a href="coding-of-personal-comments.html#coding-according-to-theme"><i class="fa fa-check"></i><b>3.1</b> Coding according to theme</a></li>
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(move)</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(data.table)</a></code></pre></div>
 <div id="heart-rate-data" class="section level2">
-<h2><span class="header-section-number">2.1</span> Heart Rate Data</h2>
+<h2><span class="header-section-number">2.1</span> Heart rate data</h2>
 <p>To read in all of the .TCX files, first create a list of all filenames in the ‘data’ directory with the appropriate extension.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># get all files in the dataset from the &#39;data&#39; folder in our working directory </span></a>
 <a class="sourceLine" id="cb2-2" title="2">filenames &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/&quot;</span>, <span class="st">&quot;*.tcx&quot;</span>, <span class="dt">full.names=</span><span class="ot">TRUE</span>)</a></code></pre></div>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="creating-a-continuous-heart-rate-layer" class="section level2">
 <h2><span class="header-section-number">2.2</span> Creating a continuous heart rate layer</h2>
-<p>We will now process the cleaned heart rate points to create a continuous layer of anxiety levels. This processing is done using QGIS, and so a model with predefined steps and parameters has been provided: ADD LINK</p>
+<p>We will now process the cleaned heart rate points to create a continuous layer of anxiety levels. This processing is done using QGIS, and so a model with predefined steps and parameters has been provided: <a href="https://github.com/hannahker/CASA0005-final/blob/master/hr_processing.model3">Link to model</a></p>
 <p>The input for this model is a vector layer with points corresponding to each heart rate measurement. The QGIS <a href="https://docs.qgis.org/2.8/en/docs/user_manual/processing_algs/qgis/vector_creation_tools/pointslayerfromtable.html">‘Points Layer from Table’</a> function can be used to read in the .CSV file generated in the previous step and create this vector layer.</p>
 <p>The QGIS processing model performs the following functions:</p>
 <ol style="list-style-type: decimal">
@@ -262,10 +262,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Clips the interpolated layer by the buffer to enclose the region of heart rate measurement.</li>
 <li>Smooths the interpolated layer.</li>
 </ol>
-<p>The model outputs a raster layer of continuous heart rate values.</p>
+<p>The model outputs a raster layer of continuous heart rate values. This file should be saved as a GeoTIFF for future visualization.</p>
 </div>
 <div id="personal-comments" class="section level2">
-<h2><span class="header-section-number">2.3</span> Personal Comments</h2>
+<h2><span class="header-section-number">2.3</span> Personal comments</h2>
 <p>We now need to read in the personal comments CSV file, stored in the same folder as our heart rate data.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># read in csv </span></a>
 <a class="sourceLine" id="cb7-2" title="2">notes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/voice_notes_raw.csv&#39;</span>)</a></code></pre></div>
